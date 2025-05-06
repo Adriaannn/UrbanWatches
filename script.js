@@ -50,11 +50,11 @@ const watches = [
     },
     {
         id: 7,
-        name: "Skeleton Automatic",
-        brand: "Urban Timepieces",
+        name: "Datejust 41",
+        brand: "Rolex",
         price: 499.99,
         description: "Stunning skeleton design revealing the intricate mechanical movement.",
-        image: "https://images.unsplash.com/photo-1526045478516-99145907023c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        image: "images/watches/rolex/rolex-6.jpg"
     },
     {
         id: 8,
