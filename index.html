@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Watches - Luxury Timepieces</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Urban Watches</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item mega-dropdown-parent position-static">
+                        <a class="nav-link mega-dropdown-toggle" href="#" id="collectionsMegaDropdown">Collections</a>
+                        <div class="mega-dropdown-bar" id="megaDropdownBar">
+                            <div class="container">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-auto">
+                                        <img src="images/brands/rolex.png" alt="Rolex">
+                                        <div>Rolex</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="images/brands/patek.png" alt="Patek Philippe">
+                                        <div>Patek Philippe</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="images/brands/richard_mille.png" alt="Richard Mille">
+                                        <div>Richard Mille</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="images/brands/seiko.png" alt="Seiko">
+                                        <div>Seiko</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="images/brands/tissot.png" alt="Tissot">
+                                        <div>Tissot</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="images/brands/casio.png" alt="Casio">
+                                        <div>Casio</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 text-white">Timeless Elegance</h1>
+                    <p class="lead text-white">Discover our exclusive collection of luxury timepieces</p>
+                    <a href="#collection" class="btn btn-light btn-lg">View Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section id="collection" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Collection</h2>
+            <div class="row" id="watch-container">
+                <!-- Watch cards will be dynamically added here -->
+            </div>
+            <div class="text-center mt-5">
+                <a href="collections.html" class="btn btn-outline-dark btn-lg">View More Collections</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>About Urban Watches</h2>
+                    <p>Welcome to Urban Watches, where timeless elegance meets modern sophistication. We curate a selection of the finest timepieces from renowned brands, offering you a glimpse into the world of luxury watchmaking.</p>
+                    <p>Our collection features watches that combine exceptional craftsmanship with contemporary design, perfect for those who appreciate both style and precision.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="About Us" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Name">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Your Email">
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Urban Watches</h5>
+                    <p>Discover the perfect timepiece for your style.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html> 
