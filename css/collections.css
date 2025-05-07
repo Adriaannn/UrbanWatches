@@ -84,3 +84,6 @@ body { padding-top: 80px; }
     object-fit: contain;
     margin: 5px 0;
 } 
+.brand-img-container{
+    width: 100%;
+}
