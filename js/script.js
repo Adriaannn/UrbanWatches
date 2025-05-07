@@ -2,43 +2,43 @@
 const watches = [
     {
         id: 1,
-        name: "Classic Chronograph",
-        brand: "Urban Timepieces",
+        name: "Datejust41",
+        brand: "Rolex",
         description: "A timeless chronograph watch with premium leather strap and stainless steel case.",
         image: "images/watches/rolex/rolex-5.jpg"
     },
     {
         id: 2,
-        name: "Modern Minimalist",
+        name: "Rolex Submariner",
         brand: "Urban Timepieces",
         description: "Clean and contemporary design with a minimalist dial and mesh bracelet.",
         image: "images/watches/rolex/rolex-4.jpg"
     },
     {
         id: 3,
-        name: "Sport Diver",
+        name: "Philippe Chronograph",
         brand: "Urban Timepieces",
         description: "Professional diving watch with water resistance up to 200m and rotating bezel.",
         image: "images/watches/patek/5170j.jpg"
     },
     {
         id: 4,
-        name: "Luxury Automatic",
-        brand: "Urban Timepieces",
+        name: "RM029",
+        brand: "Richard Mille",
         description: "Premium automatic movement with exhibition case back and sapphire crystal.",
         image: "images/watches/richard_mille/rm029.jpg"
     },
     {
         id: 5,
-        name: "Vintage Pilot",
-        brand: "Urban Timepieces",
+        name: "RM030",
+        brand: "Richard Mille",
         description: "Inspired by classic pilot watches with large numerals and leather strap.",
         image: "images/watches/richard_mille/rm030.jpg"
     },
     {
         id: 6,
-        name: "Smart Hybrid",
-        brand: "Urban Timepieces",
+        name: "Daytona",
+        brand: "Rolex",
         description: "Combines traditional watch design with smart features and activity tracking.",
         image: "images/watches/rolex/rolex-1.jpg"
     },
@@ -51,35 +51,35 @@ const watches = [
     },
     {
         id: 8,
-        name: "Field Watch",
-        brand: "Urban Timepieces",
+        name: "Philippe 5396r",
+        brand: "Patek",
         description: "Rugged and reliable field watch with NATO strap and luminous hands.",
         image: "images/watches/patek/5396r.jpg"
     },
     {
         id: 9,
-        name: "Moonphase",
-        brand: "Urban Timepieces",
+        name: "Philippe 5524g",
+        brand: "Patek",
         description: "Elegant moonphase complication with mother of pearl dial.",
         image: "images/watches/patek/5524g.jpg"
     },
     {
         id: 10,
-        name: "GMT Master",
+        name: "Philippe 5212a",
         brand: "Urban Timepieces",
         description: "Dual time zone watch with rotating bezel and 24-hour hand.",
         image: "images/watches/patek/5212a.jpg"
     },
     {
         id: 11,
-        name: "Racing Chronograph",
+        name: "Datejust41",
         brand: "Urban Timepieces",
         description: "High-performance chronograph with tachymeter scale and racing-inspired design.",
         image: "images/watches/rolex/rolex-3.jpg"
     },
     {
         id: 12,
-        name: "Dress Watch",
+        name: "RM035",
         brand: "Urban Timepieces",
         description: "Elegant dress watch with slim profile and crocodile leather strap.",
         image: "images/watches/richard_mille/rm035.jpg"
