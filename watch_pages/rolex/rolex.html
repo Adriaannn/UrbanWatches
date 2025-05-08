@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f4f4f4;
       margin: 0;
       padding: 0;
@@ -51,38 +51,187 @@
       text-align: center;
     }
 
+    header h1 {
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
     .collection {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      padding: 20px;
-      max-width: 1000px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      padding: 30px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
     .watch-card {
       background: #fff;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
       text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .watch-card img {
+    .watch-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .watch-image-container {
+      position: relative;
+      overflow: hidden;
+      height: 280px;
+      cursor: pointer;
+    }
+
+    .watch-image-container img {
       width: 100%;
-      height: 180px;
+      height: 100%;
       object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .watch-image-container:hover img {
+      transform: scale(1.1);
+      filter: brightness(1.1);
     }
 
     .watch-card h3 {
-      margin: 10px 0 5px;
-      font-size: 16px;
+      margin: 15px 0 8px;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .watch-card p {
-      margin: 0 0 15px;
-      color: #888;
-      font-size: 14px;
+      margin: 0 0 18px;
+      color: #666;
+      font-size: 16px;
+    }
+
+    /* Modal styles */
+    .modal-content {
+      border-radius: 10px;
+      overflow: hidden;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .modal-header {
+      border-bottom: none;
+      padding: 20px 20px 0;
+    }
+
+    .modal-header .modal-title {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .modal-footer {
+      border-top: none;
+      padding: 0 20px 20px;
+    }
+
+    .watch-modal-img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .nav-tabs {
+      border-bottom: 1px solid #dee2e6;
+      margin-bottom: 20px;
+    }
+
+    .nav-tabs .nav-link {
+      color: #495057 !important;
+      border: 1px solid transparent;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: -1px;
+      background: none;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-tabs .nav-link:hover {
+      border-color: #e9ecef #e9ecef #dee2e6;
+    }
+
+    .nav-tabs .nav-link.active {
+      color: #212529 !important;
+      background-color: #fff;
+      border-color: #dee2e6 #dee2e6 #fff;
+      font-weight: 600;
+    }
+
+    .tab-content > .tab-pane {
+      display: none;
+    }
+
+    .tab-content > .active {
+      display: block;
+    }
+
+    .tab-pane {
+      padding: 15px 0;
+    }
+
+    .tab-pane p {
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .specs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .specs-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+    }
+
+    .specs-list li:last-child {
+      border-bottom: none;
+    }
+
+    .specs-list strong {
+      display: inline-block;
+      width: 140px;
+      color: #212529;
+      font-weight: 600;
+    }
+
+    .specs-list span {
+      color: #555;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .collection {
+        padding: 20px;
+      }
+      
+      .watch-card h3 {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
@@ -122,32 +271,129 @@
 
   <div class="collection">
     <div class="watch-card">
-      <img src="../../images/watches/rolex/rolex-1.jpg" alt="Classic Black Watch">
+      <div class="watch-image-container" data-bs-toggle="modal" data-bs-target="#watchModal" 
+           onclick="showWatchDetails('Classic Black', '../../images/watches/rolex/rolex-1.jpg', 
+           'Iconic automatic movement with date display, fluted bezel, sapphire crystal, and Jubilee bracelet for timeless elegance.', 
+           'Automatic', '41mm', 'Stainless Steel', 'Sapphire Crystal', '100m', 'Jubilee Bracelet')">
+        <img src="../../images/watches/rolex/rolex-1.jpg" alt="Classic Black Watch">
+      </div>
       <h3>Classic Black</h3>
     </div>
     <div class="watch-card">
-      <img src="../../images/watches/rolex/rolex-2.jpg" alt="Chrono Steel Watch">
+      <div class="watch-image-container" data-bs-toggle="modal" data-bs-target="#watchModal" 
+           onclick="showWatchDetails('Chrono Steel', '../../images/watches/rolex/rolex-2.jpg', 
+           'Precision chronograph with stainless steel case, tachymeter bezel, and water resistance up to 100m. Perfect for both casual and formal occasions.', 
+           'Automatic Chronograph', '40mm', 'Stainless Steel', 'Sapphire Crystal', '100m', 'Oyster Bracelet')">
+        <img src="../../images/watches/rolex/rolex-2.jpg" alt="Chrono Steel Watch">
+      </div>
       <h3>Chrono Steel</h3>
     </div>
     <div class="watch-card">
-      <img src="../../images/watches/rolex/rolex-3.jpg" alt="Urban Gold Watch">
+      <div class="watch-image-container" data-bs-toggle="modal" data-bs-target="#watchModal" 
+           onclick="showWatchDetails('Urban Gold', '../../images/watches/rolex/rolex-3.jpg', 
+           'Luxurious gold-tone finish with automatic movement, exhibition case back, and scratch-resistant sapphire crystal. A statement piece for the discerning collector.', 
+           'Automatic', '36mm', '18k Yellow Gold', 'Sapphire Crystal', '50m', 'President Bracelet')">
+        <img src="../../images/watches/rolex/rolex-3.jpg" alt="Urban Gold Watch">
+      </div>
       <h3>Urban Gold</h3>
     </div>
     <div class="watch-card">
-      <img src="../../images/watches/rolex/rolex-4.jpg" alt="Midnight Leather Watch">
+      <div class="watch-image-container" data-bs-toggle="modal" data-bs-target="#watchModal" 
+           onclick="showWatchDetails('Midnight Leather', '../../images/watches/rolex/rolex-4.jpg', 
+           'Elegant design with genuine leather strap, minimalist dial, and slim profile. The perfect accessory for evening events and business attire.', 
+           'Automatic', '39mm', 'Stainless Steel', 'Sapphire Crystal', '50m', 'Leather Strap')">
+        <img src="../../images/watches/rolex/rolex-4.jpg" alt="Midnight Leather Watch">
+      </div>
       <h3>Midnight Leather</h3>
     </div>
     <div class="watch-card">
-      <img src="../../images/watches/rolex/rolex-5.jpg" alt="Midnight Leather Watch">
-      <h3>Midnight Leather</h3>
+      <div class="watch-image-container" data-bs-toggle="modal" data-bs-target="#watchModal" 
+           onclick="showWatchDetails('Datejust 41', '../../images/watches/rolex/rolex-5.jpg', 
+           'Robust automatic movement with unidirectional rotating bezel, date display with Cyclops lens, and scratch-resistant sapphire crystal.', 
+           'Automatic', '41mm', 'Stainless Steel & White Gold', 'Sapphire Crystal', '100m', 'Jubilee Bracelet')">
+        <img src="../../images/watches/rolex/rolex-5.jpg" alt="Datejust 41 Watch">
+      </div>
+      <h3>Datejust 41</h3>
     </div>
     <div class="watch-card">
-      <img src="../../images/watches/rolex/rolex-6.jpg" alt="Midnight Leather Watch">
-      <h3>Midnight Leather</h3>
+      <div class="watch-image-container" data-bs-toggle="modal" data-bs-target="#watchModal" 
+           onclick="showWatchDetails('Oyster Perpetual', '../../images/watches/rolex/rolex-6.jpg', 
+           'Stunning skeleton design revealing the intricate mechanical movement with premium stainless steel bracelet and luminous hands.', 
+           'Automatic', '36mm', 'Stainless Steel', 'Sapphire Crystal', '100m', 'Oyster Bracelet')">
+        <img src="../../images/watches/rolex/rolex-6.jpg" alt="Oyster Perpetual Watch">
+      </div>
+      <h3>Oyster Perpetual</h3>
+    </div>
+  </div>
+
+  <!-- Watch Modal -->
+  <div class="modal fade" id="watchModal" tabindex="-1" aria-labelledby="watchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="watchModalLabel">Watch Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img id="modalWatchImg" src="" alt="Watch" class="watch-modal-img">
+          
+          <!-- Tabs -->
+          <ul class="nav nav-tabs" id="watchTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="specifications-tab" data-bs-toggle="tab" data-bs-target="#specifications" type="button" role="tab" aria-controls="specifications" aria-selected="false">Specifications</button>
+            </li>
+          </ul>
+          
+          <!-- Tab content -->
+          <div class="tab-content" id="watchTabContent">
+            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+              <p id="modalWatchDesc"></p>
+            </div>
+            <div class="tab-pane fade" id="specifications" role="tabpanel" aria-labelledby="specifications-tab">
+              <ul class="specs-list">
+                <li><strong>Movement:</strong> <span id="modalWatchMovement"></span></li>
+                <li><strong>Case Size:</strong> <span id="modalWatchSize"></span></li>
+                <li><strong>Material:</strong> <span id="modalWatchMaterial"></span></li>
+                <li><strong>Crystal:</strong> <span id="modalWatchCrystal"></span></li>
+                <li><strong>Water Resistance:</strong> <span id="modalWatchWR"></span></li>
+                <li><strong>Bracelet/Strap:</strong> <span id="modalWatchBracelet"></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-dark">Add to Wishlist</button>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Bootstrap JS and dependencies -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    function showWatchDetails(name, imgSrc, description, movement, size, material, crystal, waterResistance, bracelet) {
+      // Set modal title
+      document.getElementById('watchModalLabel').textContent = name;
+      
+      // Set image
+      document.getElementById('modalWatchImg').src = imgSrc;
+      
+      // Set description
+      document.getElementById('modalWatchDesc').textContent = description;
+      
+      // Set specifications
+      document.getElementById('modalWatchMovement').textContent = movement;
+      document.getElementById('modalWatchSize').textContent = size;
+      document.getElementById('modalWatchMaterial').textContent = material;
+      document.getElementById('modalWatchCrystal').textContent = crystal;
+      document.getElementById('modalWatchWR').textContent = waterResistance;
+      document.getElementById('modalWatchBracelet').textContent = bracelet;
+    }
+  </script>
 </body>
 </html>

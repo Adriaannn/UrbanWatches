@@ -4,14 +4,14 @@ const watches = [
         id: 1,
         name: "Datejust41",
         brand: "Rolex",
-        description: "A timeless chronograph watch with premium leather strap and stainless steel case.",
+        description: "Iconic automatic movement with date display, fluted bezel, sapphire crystal, and Jubilee bracelet for timeless elegance.",
         image: "images/watches/rolex/rolex-5.jpg"
     },
     {
         id: 2,
         name: "Rolex Submariner",
         brand: "Urban Timepieces",
-        description: "Clean and contemporary design with a minimalist dial and mesh bracelet.",
+        description: "Robust automatic movement with unidirectional rotating bezel, date display with Cyclops lens, and scratch-resistant sapphire crystal.",
         image: "images/watches/rolex/rolex-4.jpg"
     },
     {
@@ -25,7 +25,7 @@ const watches = [
         id: 4,
         name: "RM029",
         brand: "Richard Mille",
-        description: "Premium automatic movement with exhibition case back and sapphire crystal.",
+        description: "Luxury automatic movement with skeletonized dial, exhibition case back, and scratch-resistant sapphire crystal.",
         image: "images/watches/richard_mille/rm029.jpg"
     },
     {
