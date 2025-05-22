@@ -658,7 +658,7 @@ footer h5 {
 
 /* Featured Products Section Styles */
 .featured-products-section {
-    background: #181818;
+    background: linear-gradient(180deg, #111 0%, #232323 60%, #181818 100%);
     padding: 60px 0 40px 0;
 }
 .featured-section-label {
