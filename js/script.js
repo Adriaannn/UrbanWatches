@@ -42,48 +42,6 @@ const watches = [
         description: "Combines traditional watch design with smart features and activity tracking.",
         image: "images/watches/rolex/rolex-1.jpg"
     },
-    {
-        id: 7,
-        name: "Datejust 41",
-        brand: "Rolex",
-        description: "Stunning skeleton design revealing the intricate mechanical movement.",
-        image: "images/watches/rolex/rolex-6.jpg"
-    },
-    {
-        id: 8,
-        name: "Philippe 5396r",
-        brand: "Patek",
-        description: "Rugged and reliable field watch with NATO strap and luminous hands.",
-        image: "images/watches/patek/5396r.jpg"
-    },
-    {
-        id: 9,
-        name: "Philippe 5524g",
-        brand: "Patek",
-        description: "Elegant moonphase complication with mother of pearl dial.",
-        image: "images/watches/patek/5524g.jpg"
-    },
-    {
-        id: 10,
-        name: "Philippe 5212a",
-        brand: "Urban Timepieces",
-        description: "Dual time zone watch with rotating bezel and 24-hour hand.",
-        image: "images/watches/patek/5212a.jpg"
-    },
-    {
-        id: 11,
-        name: "Datejust41",
-        brand: "Urban Timepieces",
-        description: "High-performance chronograph with tachymeter scale and racing-inspired design.",
-        image: "images/watches/rolex/rolex-3.jpg"
-    },
-    {
-        id: 12,
-        name: "RM035",
-        brand: "Urban Timepieces",
-        description: "Elegant dress watch with slim profile and crocodile leather strap.",
-        image: "images/watches/richard_mille/rm035.jpg"
-    }
 ];
 
 // Function to create watch cards
@@ -195,4 +153,59 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', checkHeroInView);
         window.addEventListener('DOMContentLoaded', checkHeroInView);
     }
+
+    (function() {
+        const navbar = document.querySelector('.custom-navbar');
+        const heroSection = document.getElementById('home');
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        let mouseNearTop = false;
+
+        function isInHero() {
+            const rect = heroSection.getBoundingClientRect();
+            return rect.bottom > 80; // 80px from top, adjust as needed
+        }
+
+        function updateNavbar() {
+            // Show/hide the main bar (background) only on hover near top
+            if (mouseNearTop) {
+                navbar.classList.add('navbar-bar-visible');
+            } else {
+                navbar.classList.remove('navbar-bar-visible');
+            }
+
+            if (isInHero()) {
+                navbar.classList.remove('navbar-hidden');
+                navbar.classList.add('hero-navbar');
+                // console.log('IN HERO: always show navbar');
+            } else {
+                navbar.classList.remove('hero-navbar');
+                // Only hide if not hovering near top AND scrolling down
+                if (!mouseNearTop && window.scrollY > lastScrollY) {
+                    navbar.classList.add('navbar-hidden');
+                    // console.log('NOT IN HERO: scrolling down and not hovering, hide navbar');
+                } else {
+                    navbar.classList.remove('navbar-hidden');
+                    // console.log('NOT IN HERO: scrolling up or hovering, show navbar');
+                }
+            }
+            lastScrollY = window.scrollY;
+            ticking = false;
+        }
+
+        document.addEventListener('mousemove', function(e) {
+            mouseNearTop = e.clientY < 60;
+            updateNavbar();
+        });
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        });
+
+        // Initial state
+        updateNavbar();
+    })();
 }); 
