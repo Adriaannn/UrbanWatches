@@ -577,3 +577,166 @@ footer h5 {
   top: -100px !important;
   pointer-events: none;
 }
+
+/* Operate Watches Section Styles */
+.operate-watches-static-img { display: none !important; }
+.operate-watches-section {
+    position: relative;
+    min-height: 440px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.operate-watches-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.7)), url('../images/backgrounds/bg3.jpg') center center/cover no-repeat;
+    z-index: 1;
+}
+.operate-watches-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 16px;
+}
+.operate-watches-title {
+    color: #fff;
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+.operate-watches-subtitle {
+    color: #e0c36b;
+    font-size: 1rem;
+    letter-spacing: 1.2px;
+    margin-bottom: 18px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+.operate-watches-play {
+    display: inline-block;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: rgba(224,195,107,0.15);
+    color: #e0c36b;
+    font-size: 2rem;
+    line-height: 54px;
+    text-align: center;
+    transition: background 0.2s, color 0.2s;
+    border: 2px solid #e0c36b;
+}
+.operate-watches-play:hover {
+    background: #e0c36b;
+    color: #181818;
+    text-decoration: none;
+}
+@media (max-width: 768px) {
+    .operate-watches-content {
+        padding: 0 8px;
+    }
+    .operate-watches-title {
+        font-size: 1.3rem;
+    }
+    .operate-watches-section {
+        min-height: 200px;
+    }
+}
+
+/* Featured Products Section Styles */
+.featured-products-section {
+    background: #181818;
+    padding: 60px 0 40px 0;
+}
+.featured-section-label {
+    color: #e0c36b;
+    letter-spacing: 2px;
+    font-size: 0.95rem;
+}
+.featured-products-title {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.featured-underline {
+    width: 60px;
+    height: 3px;
+    background: #e0c36b;
+    margin: 0 auto 10px auto;
+    border-radius: 2px;
+}
+.featured-card {
+    background: #232323;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    padding: 32px 18px 24px 18px;
+    margin: 0 8px;
+    min-width: 220px;
+    max-width: 320px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.featured-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(224,195,107,0.15);
+}
+.featured-watch-img {
+    width: 220px;
+    height: 340px;
+    object-fit: contain;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 2px 8px rgba(224,195,107,0.12));
+}
+.featured-watch-name {
+    color: #e0c36b;
+    font-size: 1.08rem;
+    font-weight: 600;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+}
+.btn-gold {
+    background: #e0c36b;
+    color: #181818;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    padding: 0.7rem 2.2rem;
+    font-size: 1.08rem;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: 0 2px 8px rgba(224,195,107,0.10);
+}
+.btn-gold:hover {
+    background: #fff;
+    color: #e0c36b;
+    text-decoration: none;
+}
+@media (max-width: 991.98px) {
+    .featured-products-section {
+        padding: 40px 0 20px 0;
+    }
+    .featured-card {
+        min-width: 160px;
+        max-width: 100%;
+        padding: 20px 8px 16px 8px;
+    }
+    .featured-watch-img {
+        width: 120px;
+        height: 180px;
+    }
+}
