@@ -240,6 +240,12 @@ section {
     box-shadow: 0 0 0 2px rgba(224,195,107,0.2);
 }
 
+/* Placeholder color for all form controls */
+.form-control::placeholder, textarea::placeholder {
+    color: #fff !important;
+    opacity: 1;
+}
+
 /* Footer */
 footer {
     background: #181818;
@@ -355,7 +361,7 @@ footer h5 {
 
 /* About Section */
 #about {
-    background: #232323;
+    background: #181818 !important;
 }
 #about h2 {
     color: #e0c36b;
@@ -456,9 +462,10 @@ footer h5 {
     object-fit: cover;
     border-radius: 12px 12px 0 0;
 }
+
 .feature-title {
     color: #e0c36b;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     font-weight: 700;
 }
 .feature-text {
@@ -486,6 +493,7 @@ footer h5 {
 }
 .feature-card-body {
     background-color: #181818;
+    font-size: 1.8rem;
 }
 
 /* Value Features Section Styles */
@@ -560,22 +568,42 @@ footer h5 {
 }
 
 .custom-navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  transition: background 0.3s, box-shadow 0.3s, top 0.3s;
-  background: transparent !important;
-  box-shadow: none !important;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
 }
-.custom-navbar.navbar-bar-visible {
-  background: #181818 !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+.custom-navbar:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar-brand, .nav-link {
+    opacity: 0 !important;
+    transition: opacity 0.3s ease;
+}
+
+.custom-navbar:hover .navbar-brand,
+.custom-navbar:hover .nav-link,
+.custom-navbar.navbar-visible .navbar-brand,
+.custom-navbar.navbar-visible .nav-link {
+    opacity: 1 !important;
+}
+
+.navbar-toggler {
+    opacity: 0 !important;
+    transition: opacity 0.3s ease;
+}
+
+.custom-navbar:hover .navbar-toggler,
+.custom-navbar.navbar-visible .navbar-toggler {
+    opacity: 1 !important;
 }
 
 .custom-navbar.navbar-hidden {
-  top: -100px !important;
-  pointer-events: none;
+    transform: translateY(-100%);
+    pointer-events: none;
 }
 
 /* Operate Watches Section Styles */
@@ -679,9 +707,7 @@ footer h5 {
     border-radius: 2px;
 }
 .featured-card {
-    background: #232323;
     border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
     padding: 32px 18px 24px 18px;
     margin: 0 8px;
     min-width: 220px;

@@ -1,45 +1,131 @@
-
-
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
-    displayWatches();
+    console.log('DOMContentLoaded event fired.');
+    // displayWatches() removed for debugging
     
     // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+    try {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
-    });
+        console.log('Smooth scrolling setup complete.');
+    } catch (e) {
+        console.error('Error setting up smooth scrolling:', e);
+    }
 
-    const navbar = document.querySelector('.navbar');
-    const megaDropdownToggle = document.getElementById('collectionsMegaDropdown');
-    const megaDropdownBar = document.getElementById('megaDropdownBar');
+    let navbar, megaDropdownToggle, megaDropdownBar;
+    let isMegaDropdownOpen = false;
+    try {
+        navbar = document.querySelector('.navbar');
+        megaDropdownToggle = document.getElementById('collectionsMegaDropdown');
+        megaDropdownBar = document.getElementById('megaDropdownBar');
+        console.log('Navbar, megaDropdownToggle, megaDropdownBar:', navbar, megaDropdownToggle, megaDropdownBar);
+    } catch (e) {
+        console.error('Error selecting navbar elements:', e);
+    }
 
     // Function to handle click outside
     function handleClickOutside(event) {
         if (!navbar.contains(event.target)) {
             navbar.classList.remove('active');
             megaDropdownBar.style.display = 'none';
+            isMegaDropdownOpen = false;
+            updateNavbar();
         }
     }
 
     // Add click event to mega dropdown toggle
-    megaDropdownToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        navbar.classList.add('active');
-        megaDropdownBar.style.display = 'block';
+    if (megaDropdownToggle && megaDropdownBar && navbar) {
+        megaDropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            navbar.classList.add('active');
+            megaDropdownBar.style.display = 'block';
+            isMegaDropdownOpen = true;
+            updateNavbar();
+        });
+
+        // Add click event listener to document
+        document.addEventListener('click', handleClickOutside);
+
+        // Prevent dropdown from closing when clicking inside it
+        megaDropdownBar.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    // Navbar visibility logic
+    const customNavbar = document.querySelector('.custom-navbar');
+    const heroSection = document.querySelector('.hero-section');
+    if (!customNavbar) {
+        console.log('customNavbar not found!');
+    } else {
+        console.log('customNavbar found:', customNavbar);
+    }
+    if (!heroSection) {
+        console.log('heroSection not found!');
+    } else {
+        console.log('heroSection found:', heroSection);
+    }
+    let lastScrollY = window.scrollY;
+    let mouseNearTop = false;
+
+    function isInHero() {
+        if (!heroSection) return false;
+        const rect = heroSection.getBoundingClientRect();
+        return rect.bottom > 0;
+    }
+
+    function updateNavbar() {
+        if (!customNavbar) {
+            console.log('updateNavbar: customNavbar is null');
+            return;
+        }
+        if (isMegaDropdownOpen) {
+            customNavbar.classList.add('navbar-visible');
+            customNavbar.classList.remove('navbar-hidden');
+            customNavbar.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+            console.log('Navbar should be visible (mega dropdown open)');
+            return;
+        }
+        if (isInHero()) {
+            // Always show navbar in hero section
+            customNavbar.classList.add('navbar-visible');
+            customNavbar.classList.remove('navbar-hidden');
+            customNavbar.style.backgroundColor = 'transparent';
+            console.log('Navbar should be visible (in hero section)');
+        } else {
+            // Outside hero section - show on hover or scroll up
+            if (mouseNearTop || window.scrollY < lastScrollY) {
+                customNavbar.classList.add('navbar-visible');
+                customNavbar.classList.remove('navbar-hidden');
+                customNavbar.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                console.log('Navbar should be visible (hover/scroll up)');
+            } else {
+                customNavbar.classList.remove('navbar-visible');
+                customNavbar.classList.add('navbar-hidden');
+                console.log('Navbar should be hidden (scrolling down)');
+            }
+        }
+        lastScrollY = window.scrollY;
+    }
+
+    // Track mouse position near top of page
+    document.addEventListener('mousemove', function(e) {
+        mouseNearTop = e.clientY < 60;
+        updateNavbar();
     });
 
-    // Add click event listener to document
-    document.addEventListener('click', handleClickOutside);
+    // Update on scroll
+    window.addEventListener('scroll', updateNavbar);
 
-    // Prevent dropdown from closing when clicking inside it
-    megaDropdownBar.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
+    // Set initial state
+    if (customNavbar) customNavbar.classList.add('navbar-visible');
+    updateNavbar();
 
     // Hide navbar on scroll down, show on scroll up (index.html only)
     if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '/index.html') {
@@ -73,59 +159,4 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', checkHeroInView);
         window.addEventListener('DOMContentLoaded', checkHeroInView);
     }
-
-    (function() {
-        const navbar = document.querySelector('.custom-navbar');
-        const heroSection = document.getElementById('home');
-        let lastScrollY = window.scrollY;
-        let ticking = false;
-        let mouseNearTop = false;
-
-        function isInHero() {
-            const rect = heroSection.getBoundingClientRect();
-            return rect.bottom > 80; // 80px from top, adjust as needed
-        }
-
-        function updateNavbar() {
-            // Show/hide the main bar (background) only on hover near top
-            if (mouseNearTop) {
-                navbar.classList.add('navbar-bar-visible');
-            } else {
-                navbar.classList.remove('navbar-bar-visible');
-            }
-
-            if (isInHero()) {
-                navbar.classList.remove('navbar-hidden');
-                navbar.classList.add('hero-navbar');
-                // console.log('IN HERO: always show navbar');
-            } else {
-                navbar.classList.remove('hero-navbar');
-                // Only hide if not hovering near top AND scrolling down
-                if (!mouseNearTop && window.scrollY > lastScrollY) {
-                    navbar.classList.add('navbar-hidden');
-                    // console.log('NOT IN HERO: scrolling down and not hovering, hide navbar');
-                } else {
-                    navbar.classList.remove('navbar-hidden');
-                    // console.log('NOT IN HERO: scrolling up or hovering, show navbar');
-                }
-            }
-            lastScrollY = window.scrollY;
-            ticking = false;
-        }
-
-        document.addEventListener('mousemove', function(e) {
-            mouseNearTop = e.clientY < 60;
-            updateNavbar();
-        });
-
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                window.requestAnimationFrame(updateNavbar);
-                ticking = true;
-            }
-        });
-
-        // Initial state
-        updateNavbar();
-    })();
 }); 
